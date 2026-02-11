@@ -7,7 +7,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "add-to-radarr-sonarr-lidarr@extension",
-      "update_url": "https://raw.githubusercontent.com/value1337/IMDB-LetterboxD-to-Radarr-Sonarr/main/update.json",
+      "update_url": "https://raw.githubusercontent.com/value1338/IMDB-LetterboxD-to-Radarr-Sonarr/main/update.json",
       "strict_min_version": "140.0",
       "data_collection_permissions": {
         "required": ["none"]
