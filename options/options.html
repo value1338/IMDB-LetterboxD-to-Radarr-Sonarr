@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Radarr, Sonarr &amp; Lidarr Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="arr-opt">
+    <h1 class="arr-opt__title">Radarr, Sonarr &amp; Lidarr Settings</h1>
+
+    <!-- Connection Status Banner -->
+    <div class="arr-opt__status-banner" id="statusBanner">
+      <div class="arr-opt__status-row">
+        <span class="arr-opt__dot arr-opt__dot--radarr"></span>
+        <span class="arr-opt__status-label">Radarr</span>
+        <span class="arr-opt__status-value" id="radarrConnStatus">checking…</span>
+      </div>
+      <div class="arr-opt__status-row">
+        <span class="arr-opt__dot arr-opt__dot--sonarr"></span>
+        <span class="arr-opt__status-label">Sonarr</span>
+        <span class="arr-opt__status-value" id="sonarrConnStatus">checking…</span>
+      </div>
+      <div class="arr-opt__status-row">
+        <span class="arr-opt__dot arr-opt__dot--lidarr"></span>
+        <span class="arr-opt__status-label">Lidarr</span>
+        <span class="arr-opt__status-value" id="lidarrConnStatus">checking…</span>
+      </div>
+    </div>
+
+    <!-- Radarr -->
+    <section class="arr-opt__section">
+      <h2 class="arr-opt__heading">
+        <span class="arr-opt__dot arr-opt__dot--radarr"></span>
+        Radarr <small>(Movies)</small>
+        <label class="arr-opt__toggle"><input type="checkbox" id="radarrEnabled" checked /><span class="arr-opt__toggle-track"></span></label>
+      </h2>
+
+      <label class="arr-opt__label" for="radarrUrl">Base URL</label>
+      <input class="arr-opt__input" type="url" id="radarrUrl" placeholder="http://192.168.1.100:7878" />
+
+      <label class="arr-opt__label" for="radarrApiKey">API Key</label>
+      <input class="arr-opt__input" type="text" id="radarrApiKey" placeholder="Your Radarr API key" />
+      <small class="arr-opt__hint">Settings &gt; General &gt; API Key</small>
+
+      <button type="button" class="arr-opt__test" data-service="radarr">Test Connection</button>
+      <span class="arr-opt__test-result" id="radarrTestResult"></span>
+
+      <div class="arr-opt__defaults" id="radarrDefaults" style="display:none">
+        <label class="arr-opt__label" for="radarrDefaultQualityProfileId">Default Quality Profile</label>
+        <select class="arr-opt__select" id="radarrDefaultQualityProfileId">
+          <option value="">— Always ask —</option>
+        </select>
+
+        <label class="arr-opt__label" for="radarrDefaultRootFolderPath">Default Root Folder</label>
+        <select class="arr-opt__select" id="radarrDefaultRootFolderPath">
+          <option value="">— Always ask —</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Sonarr -->
+    <section class="arr-opt__section">
+      <h2 class="arr-opt__heading">
+        <span class="arr-opt__dot arr-opt__dot--sonarr"></span>
+        Sonarr <small>(TV Series)</small>
+        <label class="arr-opt__toggle"><input type="checkbox" id="sonarrEnabled" checked /><span class="arr-opt__toggle-track"></span></label>
+      </h2>
+
+      <label class="arr-opt__label" for="sonarrUrl">Base URL</label>
+      <input class="arr-opt__input" type="url" id="sonarrUrl" placeholder="http://192.168.1.100:8989" />
+
+      <label class="arr-opt__label" for="sonarrApiKey">API Key</label>
+      <input class="arr-opt__input" type="text" id="sonarrApiKey" placeholder="Your Sonarr API key" />
+      <small class="arr-opt__hint">Settings &gt; General &gt; API Key</small>
+
+      <button type="button" class="arr-opt__test" data-service="sonarr">Test Connection</button>
+      <span class="arr-opt__test-result" id="sonarrTestResult"></span>
+
+      <div class="arr-opt__defaults" id="sonarrDefaults" style="display:none">
+        <label class="arr-opt__label" for="sonarrDefaultQualityProfileId">Default Quality Profile</label>
+        <select class="arr-opt__select" id="sonarrDefaultQualityProfileId">
+          <option value="">— Always ask —</option>
+        </select>
+
+        <label class="arr-opt__label" for="sonarrDefaultRootFolderPath">Default Root Folder</label>
+        <select class="arr-opt__select" id="sonarrDefaultRootFolderPath">
+          <option value="">— Always ask —</option>
+        </select>
+
+        <label class="arr-opt__label" for="sonarrDefaultSeriesType">Default Series Type</label>
+        <select class="arr-opt__select" id="sonarrDefaultSeriesType">
+          <option value="standard">Standard</option>
+          <option value="daily">Daily</option>
+          <option value="anime">Anime</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Lidarr -->
+    <section class="arr-opt__section">
+      <h2 class="arr-opt__heading">
+        <span class="arr-opt__dot arr-opt__dot--lidarr"></span>
+        Lidarr <small>(Music)</small>
+        <label class="arr-opt__toggle"><input type="checkbox" id="lidarrEnabled" checked /><span class="arr-opt__toggle-track"></span></label>
+      </h2>
+
+      <label class="arr-opt__label" for="lidarrUrl">Base URL</label>
+      <input class="arr-opt__input" type="url" id="lidarrUrl" placeholder="http://192.168.1.100:8686" />
+
+      <label class="arr-opt__label" for="lidarrApiKey">API Key</label>
+      <input class="arr-opt__input" type="text" id="lidarrApiKey" placeholder="Your Lidarr API key" />
+      <small class="arr-opt__hint">Settings &gt; General &gt; API Key</small>
+
+      <button type="button" class="arr-opt__test" data-service="lidarr">Test Connection</button>
+      <span class="arr-opt__test-result" id="lidarrTestResult"></span>
+
+      <div class="arr-opt__defaults" id="lidarrDefaults" style="display:none">
+        <label class="arr-opt__label" for="lidarrDefaultQualityProfileId">Default Quality Profile</label>
+        <select class="arr-opt__select" id="lidarrDefaultQualityProfileId">
+          <option value="">— Always ask —</option>
+        </select>
+
+        <label class="arr-opt__label" for="lidarrDefaultRootFolderPath">Default Root Folder</label>
+        <select class="arr-opt__select" id="lidarrDefaultRootFolderPath">
+          <option value="">— Always ask —</option>
+        </select>
+
+        <label class="arr-opt__label" for="lidarrDefaultMetadataProfileId">Default Metadata Profile</label>
+        <select class="arr-opt__select" id="lidarrDefaultMetadataProfileId">
+          <option value="">— Always ask —</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Monochrome (Music Downloads) -->
+    <section class="arr-opt__section">
+      <h2 class="arr-opt__heading">
+        <span class="arr-opt__dot arr-opt__dot--monochrome"></span>
+        Monochrome <small>(Music Downloads)</small>
+        <label class="arr-opt__toggle"><input type="checkbox" id="monochromeEnabled" checked /><span class="arr-opt__toggle-track"></span></label>
+      </h2>
+
+      <label class="arr-opt__label" for="monochromeInstanceUrl">Instance URL</label>
+      <input class="arr-opt__input" type="url" id="monochromeInstanceUrl" placeholder="https://api.monochrome.tf" />
+      <small class="arr-opt__hint">Leave empty to use default public instances</small>
+
+      <label class="arr-opt__label" for="monochromeQuality">Download Quality</label>
+      <select class="arr-opt__select" id="monochromeQuality">
+        <option value="HI_RES_LOSSLESS">Hi-Res Lossless (Max)</option>
+        <option value="LOSSLESS">Lossless (CD Quality)</option>
+        <option value="HIGH">High (320kbps)</option>
+        <option value="LOW">Low (96kbps)</option>
+      </select>
+    </section>
+
+    <!-- Site Permissions -->
+    <section class="arr-opt__section" id="permissionsSection">
+      <h2 class="arr-opt__heading">
+        <span class="arr-opt__dot arr-opt__dot--perm"></span>
+        Site Permissions
+      </h2>
+      <p class="arr-opt__perm-info">
+        The extension needs access to these sites to inject buttons.
+        In Firefox, you may need to grant access manually.
+      </p>
+      <div class="arr-opt__perm-list" id="permList"></div>
+      <button type="button" class="arr-opt__perm-grant-all" id="grantAllBtn">Grant All Sites</button>
+    </section>
+
+    <div class="arr-opt__actions">
+      <button type="button" class="arr-opt__save" id="saveBtn">Save Settings</button>
+      <input type="file" id="loadFileInput" accept=".txt" class="arr-opt__file-input" hidden />
+      <button type="button" class="arr-opt__load" id="loadFileBtn">Load from file</button>
+      <span class="arr-opt__status" id="saveStatus"></span>
+    </div>
+  </div>
+
+  <script src="../lib/constants.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

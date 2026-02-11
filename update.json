@@ -1,0 +1,12 @@
+{
+  "addons": {
+    "add-to-radarr-sonarr-lidarr@extension": {
+      "updates": [
+        {
+          "version": "1.2.1",
+          "update_link": "https://github.com/value1337/IMDB-LetterboxD-to-Radarr-Sonarr/releases/download/v1.2.1/add_to_radarr_sonarr_lidarr-1.2.1.xpi"
+        }
+      ]
+    }
+  }
+}

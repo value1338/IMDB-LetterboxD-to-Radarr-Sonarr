@@ -1,0 +1,5 @@
+*.xpi
+*.zip
+build.cmd
+VERGLEICH_BEISPIEL.md
+readme_for_chrome.txt

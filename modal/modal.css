@@ -1,0 +1,851 @@
+/* =========================================================================
+   Modal – monochrome dark theme, minimal accents, no heavy effects
+   ========================================================================= */
+
+.arr-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  opacity: 0;
+  animation: arrFade 0.15s ease forwards;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #b8b8c8;
+}
+
+.arr-modal {
+  background: #141420;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  width: 380px;
+  max-width: 92vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.arr-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.arr-modal__service {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #888;
+  letter-spacing: 0.02em;
+}
+
+.arr-modal__service-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #555;
+}
+
+.arr-modal--radarr .arr-modal__service-dot { background: #a88a3d; }
+.arr-modal--sonarr .arr-modal__service-dot { background: #4a96b0; }
+.arr-modal--lidarr .arr-modal__service-dot { background: #00c853; }
+
+.arr-modal__close {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+  border-radius: 3px;
+}
+
+.arr-modal__close:hover { color: #aaa; }
+
+/* Body -------------------------------------------------------------------- */
+
+.arr-modal__body {
+  padding: 16px 18px;
+}
+
+.arr-modal__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin-bottom: 3px;
+}
+
+.arr-modal__type {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #777;
+}
+
+/* Loading ----------------------------------------------------------------- */
+
+.arr-modal__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 0;
+  color: #666;
+  font-size: 12px;
+}
+
+.arr-modal__spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-top-color: #777;
+  border-radius: 50%;
+  animation: arrSpin 0.7s linear infinite;
+}
+
+/* Form -------------------------------------------------------------------- */
+
+.arr-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.arr-modal__field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.arr-modal__select {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: #c0c0cc;
+  font-size: 13px;
+  font-family: inherit;
+  appearance: none;
+  cursor: pointer;
+}
+
+.arr-modal__select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.arr-modal__field--inline label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-transform: none;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+  letter-spacing: 0;
+}
+
+.arr-modal__field--inline input[type="checkbox"] {
+  accent-color: #666;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* States ------------------------------------------------------------------ */
+
+.arr-modal__exists,
+.arr-modal__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 22px 0;
+  text-align: center;
+}
+
+.arr-modal__exists-icon {
+  font-size: 14px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  color: #888;
+}
+
+.arr-modal__success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  color: #6fbf73;
+  font-size: 16px;
+}
+
+.arr-modal__exists-text,
+.arr-modal__success-text {
+  font-size: 13px;
+  color: #888;
+}
+
+.arr-modal__error {
+  padding: 16px 0;
+  text-align: center;
+}
+
+.arr-modal__error-text {
+  color: #c0636a;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.arr-modal__error-text a {
+  color: #8888bb;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.arr-modal__retry {
+  padding: 5px 14px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: #888;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.arr-modal__retry:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #bbb;
+}
+
+/* Footer ------------------------------------------------------------------ */
+
+.arr-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.arr-modal__btn {
+  padding: 7px 18px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.arr-modal__btn--cancel {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #777;
+}
+
+.arr-modal__btn--cancel:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #aaa;
+}
+
+.arr-modal__btn--add {
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-weight: 600;
+  min-width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.arr-modal__btn--add:hover { background: #fff; }
+
+.arr-modal__btn--add:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.arr-modal__btn--download {
+  background: rgba(156, 39, 176, 0.15);
+  border: 1px solid rgba(156, 39, 176, 0.4);
+  color: #ce93d8;
+  font-weight: 500;
+  min-width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.arr-modal__btn--download:hover {
+  background: rgba(156, 39, 176, 0.25);
+  border-color: rgba(156, 39, 176, 0.6);
+}
+
+.arr-modal__btn--download:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.arr-modal__btn-spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: arrSpin 0.6s linear infinite;
+}
+
+/* Inline wrapper for trigger buttons on Spotify --------------------------- */
+
+.arr-ext-inline-wrap {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  vertical-align: middle !important;
+  margin-bottom: 8px !important;
+}
+
+/* Trigger button (injected into host pages) ------------------------------- */
+
+.arr-ext-trigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: #1a1a2e !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 6px !important;
+  padding: 6px 14px !important;
+  color: #ddd !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  cursor: pointer !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  vertical-align: middle !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-height: 28px !important;
+}
+
+.arr-ext-trigger:hover {
+  background: #222240 !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  color: #fff !important;
+}
+
+.arr-ext-trigger__dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #555;
+  flex-shrink: 0 !important;
+}
+
+/* Radarr = warm amber border + text */
+.arr-ext-trigger--radarr {
+  border-color: rgba(200, 160, 60, 0.45);
+  color: #c8a040;
+}
+.arr-ext-trigger--radarr:hover {
+  border-color: rgba(200, 160, 60, 0.7);
+  color: #ddb850;
+}
+
+/* Sonarr = cool blue border + text */
+.arr-ext-trigger--sonarr {
+  border-color: rgba(60, 150, 200, 0.45);
+  color: #3ca0d0;
+}
+.arr-ext-trigger--sonarr:hover {
+  border-color: rgba(60, 150, 200, 0.7);
+  color: #50b8e8;
+}
+
+/* Lidarr = green border + text */
+.arr-ext-trigger--lidarr {
+  border-color: rgba(0, 200, 83, 0.45);
+  color: #00c853;
+}
+.arr-ext-trigger--lidarr:hover {
+  border-color: rgba(0, 200, 83, 0.7);
+  color: #2ee06a;
+}
+
+/* Monochrome = purple border + text */
+.arr-ext-trigger--monochrome {
+  border-color: rgba(156, 39, 176, 0.6) !important;
+  color: #ce93d8 !important;
+  background: #1e0f28 !important;
+}
+.arr-ext-trigger--monochrome:hover {
+  border-color: rgba(156, 39, 176, 0.85) !important;
+  color: #e1bee7 !important;
+  background: #281437 !important;
+}
+
+/* Status LED – dot color driven by status, NOT service color.
+   Uses double-class selectors to beat single-class service rules. */
+.arr-ext-trigger.arr-ext-trigger--checking .arr-ext-trigger__dot {
+  background: #666;
+  animation: arrPulse 1.2s ease infinite;
+}
+.arr-ext-trigger.arr-ext-trigger--missing.arr-ext-trigger--radarr .arr-ext-trigger__dot {
+  background: #c8a040;
+}
+.arr-ext-trigger.arr-ext-trigger--missing.arr-ext-trigger--sonarr .arr-ext-trigger__dot {
+  background: #3ca0d0;
+}
+.arr-ext-trigger.arr-ext-trigger--missing.arr-ext-trigger--lidarr .arr-ext-trigger__dot {
+  background: #00c853;
+}
+.arr-ext-trigger.arr-ext-trigger--exists .arr-ext-trigger__dot {
+  background: #5a5;
+  box-shadow: 0 0 5px rgba(85, 170, 85, 0.5);
+}
+.arr-ext-trigger.arr-ext-trigger--noconfig .arr-ext-trigger__dot {
+  background: #444;
+}
+
+@keyframes arrPulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+/* IMDb – Floating Action Button (FAB) ------------------------------------ */
+
+.arr-ext-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999990;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #1a1a2e;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 28px;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  opacity: 0;
+  animation: arrFade 0.3s ease 0.5s forwards;
+}
+
+.arr-ext-fab:hover {
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.65);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.arr-ext-fab__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.arr-ext-fab__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.arr-ext-fab__dot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #555;
+  border: 2px solid #1a1a2e;
+}
+
+.arr-ext-fab__label {
+  padding: 0 16px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  color: #b0b0c0;
+}
+
+/* FAB service colors */
+.arr-ext-fab--radarr { border-color: rgba(200, 160, 60, 0.3); }
+.arr-ext-fab--radarr .arr-ext-fab__icon { color: #c8a040; }
+.arr-ext-fab--radarr:hover { border-color: rgba(200, 160, 60, 0.55); }
+
+.arr-ext-fab--sonarr { border-color: rgba(60, 150, 200, 0.3); }
+.arr-ext-fab--sonarr .arr-ext-fab__icon { color: #3ca0d0; }
+.arr-ext-fab--sonarr:hover { border-color: rgba(60, 150, 200, 0.55); }
+
+.arr-ext-fab--lidarr { border-color: rgba(0, 200, 83, 0.3); }
+.arr-ext-fab--lidarr .arr-ext-fab__icon { color: #00c853; }
+.arr-ext-fab--lidarr:hover { border-color: rgba(0, 200, 83, 0.55); }
+
+.arr-ext-fab--monochrome { border-color: rgba(156, 39, 176, 0.3); bottom: 80px; }
+.arr-ext-fab--monochrome .arr-ext-fab__icon { color: #ce93d8; }
+.arr-ext-fab--monochrome:hover { border-color: rgba(156, 39, 176, 0.55); }
+
+/* FAB status LED */
+.arr-ext-fab--checking .arr-ext-fab__dot {
+  background: #666;
+  animation: arrPulse 1.2s ease infinite;
+}
+.arr-ext-fab--missing.arr-ext-fab--radarr .arr-ext-fab__dot { background: #c8a040; }
+.arr-ext-fab--missing.arr-ext-fab--sonarr .arr-ext-fab__dot { background: #3ca0d0; }
+.arr-ext-fab--missing.arr-ext-fab--lidarr .arr-ext-fab__dot { background: #00c853; }
+.arr-ext-fab--missing.arr-ext-fab--monochrome .arr-ext-fab__dot { background: #9c27b0; }
+.arr-ext-fab--exists .arr-ext-fab__dot {
+  background: #5a5;
+  box-shadow: 0 0 6px rgba(85, 170, 85, 0.6);
+}
+.arr-ext-fab--noconfig .arr-ext-fab__dot { background: #444; }
+
+/* Letterboxd – glow/pulse highlight on trigger button -------------------- */
+
+.arr-ext-trigger--letterboxd {
+  animation: arrLetterboxdGlow 2s ease-in-out 0.5s 1 forwards;
+}
+
+@keyframes arrLetterboxdGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 210, 120, 0);
+  }
+  20% {
+    box-shadow: 0 0 8px 3px rgba(0, 210, 120, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 14px 5px rgba(0, 210, 120, 0.35);
+  }
+  80% {
+    box-shadow: 0 0 8px 3px rgba(0, 210, 120, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 6px 2px rgba(0, 210, 120, 0.12);
+  }
+}
+
+/* Monochrome Download Panel ------------------------------------------------ */
+
+.arr-mono-panel {
+  position: fixed;
+  bottom: 140px;
+  right: 24px;
+  z-index: 999991;
+  width: 320px;
+  max-height: 420px;
+  background: #141420;
+  border: 1px solid rgba(156, 39, 176, 0.25);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #b8b8c8;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  animation: arrFade 0.2s ease forwards;
+}
+
+.arr-mono-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.arr-mono-panel__title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ce93d8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arr-mono-panel__close {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.arr-mono-panel__close:hover { color: #aaa; }
+
+.arr-mono-panel__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.arr-mono-panel__manual-search {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 8px;
+}
+
+.arr-mono-panel__manual-label {
+  font-size: 11px;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.arr-mono-panel__manual-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.arr-mono-panel__input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  font-size: 12px;
+  color: #e0e0e8;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.arr-mono-panel__input::placeholder {
+  color: #666;
+}
+
+.arr-mono-panel__manual-btn {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  font-size: 12px;
+  background: rgba(156, 39, 176, 0.25);
+  border: 1px solid rgba(156, 39, 176, 0.4);
+  border-radius: 4px;
+  color: #ce93d8;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.arr-mono-panel__manual-btn:hover {
+  background: rgba(156, 39, 176, 0.35);
+  border-color: rgba(156, 39, 176, 0.55);
+}
+
+.arr-mono-panel__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0;
+  color: #666;
+  font-size: 12px;
+}
+
+.arr-mono-panel__loading .arr-modal__spinner {
+  width: 18px;
+  height: 18px;
+}
+
+.arr-mono-panel__error {
+  padding: 16px;
+  text-align: center;
+  color: #c0636a;
+  font-size: 12px;
+}
+
+.arr-mono-panel__dl-all {
+  display: block;
+  width: calc(100% - 24px);
+  margin: 4px 12px 8px;
+  padding: 7px 12px;
+  background: rgba(156, 39, 176, 0.15);
+  border: 1px solid rgba(156, 39, 176, 0.3);
+  border-radius: 5px;
+  color: #ce93d8;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+}
+
+.arr-mono-panel__dl-all:hover {
+  background: rgba(156, 39, 176, 0.25);
+  border-color: rgba(156, 39, 176, 0.5);
+}
+
+.arr-mono-panel__dl-all:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.arr-mono-panel__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.arr-mono-panel__item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.arr-mono-panel__item-num {
+  font-size: 11px;
+  color: #555;
+  width: 20px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.arr-mono-panel__item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.arr-mono-panel__item-title {
+  font-size: 12px;
+  color: #dddde8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arr-mono-panel__item-sub {
+  font-size: 10px;
+  color: #666;
+}
+
+.arr-mono-panel__item-action {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid rgba(156, 39, 176, 0.3);
+  border-radius: 3px;
+  color: #ce93d8;
+  font-size: 10px;
+  padding: 3px 8px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.arr-mono-panel__item-action:hover {
+  background: rgba(156, 39, 176, 0.15);
+  border-color: rgba(156, 39, 176, 0.5);
+}
+
+.arr-mono-panel__item-action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.arr-mono-panel__item-action--done {
+  border-color: rgba(100, 200, 100, 0.3);
+  color: #6fbf73;
+}
+
+.arr-mono-panel__back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  font-size: 11px;
+  color: #888;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
+}
+
+.arr-mono-panel__back:hover { color: #bbb; }
+
+/* Animations (minimal, no transform to avoid GPU compositing overhead) ---- */
+
+@keyframes arrFade {
+  to { opacity: 1; }
+}
+
+@keyframes arrSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* -------------------------------------------------------------------------
+   Spotify (Firefox): host page can override our trigger styles.
+   Re-enforce visibility and layout so Lidarr/Monochrome buttons stay visible.
+   ------------------------------------------------------------------------- */
+body .arr-ext-inline-wrap,
+main .arr-ext-inline-wrap {
+  display: inline-flex !important;
+  flex-shrink: 0 !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 8px !important;
+  position: relative !important;
+  z-index: 1 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-width: 0 !important;
+}
+
+body .arr-ext-trigger,
+main .arr-ext-trigger {
+  display: inline-flex !important;
+  flex-shrink: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important;
+  z-index: 1 !important;
+}

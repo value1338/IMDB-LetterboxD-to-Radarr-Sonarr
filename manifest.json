@@ -1,0 +1,99 @@
+{
+  "manifest_version": 3,
+  "name": "Add to Radarr, Sonarr & Lidarr",
+  "version": "1.2.1",
+  "description": "Add movies, TV series, and music from IMDb, Letterboxd, and Spotify directly to Radarr, Sonarr, and Lidarr. Download music via Monochrome.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "add-to-radarr-sonarr-lidarr@extension",
+      "update_url": "https://raw.githubusercontent.com/value1337/IMDB-LetterboxD-to-Radarr-Sonarr/main/update.json",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "downloads"
+  ],
+
+  "host_permissions": [
+    "<all_urls>",
+    "http://*/*"
+  ],
+
+  "optional_permissions": [
+    "<all_urls>",
+    "http://*/*",
+    "*://*.imdb.com/*",
+    "https://letterboxd.com/*",
+    "*://open.spotify.com/*"
+  ],
+
+  "background": {
+    "scripts": ["lib/constants.js", "background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://letterboxd.com/film/*"],
+      "js": [
+        "lib/constants.js",
+        "lib/api-client.js",
+        "modal/modal.js",
+        "content/content-letterboxd.js",
+        "content/content-common.js"
+      ],
+      "css": ["modal/modal.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://*.imdb.com/*"],
+      "js": [
+        "lib/constants.js",
+        "lib/api-client.js",
+        "modal/modal.js",
+        "content/content-imdb.js",
+        "content/content-common.js"
+      ],
+      "css": ["modal/modal.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://open.spotify.com/*"],
+      "js": [
+        "lib/constants.js",
+        "lib/api-client.js",
+        "modal/modal.js",
+        "content/content-spotify.js",
+        "content/content-common.js"
+      ],
+      "css": ["modal/modal.css"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  },
+
+  "action": {
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    },
+    "default_title": "Add to Radarr, Sonarr & Lidarr",
+    "default_popup": "popup/popup.html"
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  }
+}
