@@ -6,8 +6,8 @@ A Firefox extension that lets you add movies, TV series, and music to your Radar
 
 - **Radarr** — Add movies from IMDb and Letterboxd
 - **Sonarr** — Add TV series from IMDb
-- **Lidarr** — Add artists/albums from Spotify
-- **Monochrome** — Download music from Spotify via Monochrome
+- **Lidarr** — Add artists/albums from Spotify *(Chrome only, see Known Issues)*
+- **Monochrome** — Download music from Spotify via Monochrome *(Chrome only, see Known Issues)*
 - **Status indicators** — See at a glance if a title is already in your library (green/red LED)
 - **Configurable defaults** — Set quality profiles, root folders, series types, and metadata profiles
 - **Per-service toggle** — Enable/disable each service individually
@@ -19,13 +19,13 @@ A Firefox extension that lets you add movies, TV series, and music to your Radar
 |------|---------|
 | [IMDb](https://www.imdb.com) | Radarr (movies), Sonarr (series) |
 | [Letterboxd](https://letterboxd.com) | Radarr (movies) |
-| [Spotify](https://open.spotify.com) | Lidarr (music), Monochrome (downloads) |
+| [Spotify](https://open.spotify.com) | Lidarr (music), Monochrome (downloads) — *Chrome only* |
 
 ## Installation
 
 ### Self-hosted (signed .xpi)
 
-1. Download the latest `.xpi` from [Releases](https://github.com/value1337/IMDB-LetterboxD-to-Radarr-Sonarr/releases)
+1. Download the latest `.xpi` from [Releases](https://github.com/value1338/IMDB-LetterboxD-to-Radarr-Sonarr/releases)
 2. In Firefox, go to `about:addons` > gear icon > "Install Add-on From File..."
 3. Select the downloaded `.xpi` file
 
@@ -51,6 +51,10 @@ When you visit a supported site, the extension injects a small button next to th
 
 - Firefox 140+
 - A running Radarr, Sonarr, and/or Lidarr instance accessible from your browser
+
+## Known Issues
+
+- **Spotify integration (Lidarr & Monochrome) does not work in Firefox** — Spotify's content script injection is currently only functional in the Chrome extension. Firefox support is planned for a future release.
 
 ## Privacy
 
